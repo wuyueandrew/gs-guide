@@ -36,6 +36,35 @@ struct OneidMsg {
   }
 };
 
+template <typename VID_T>
+struct OneidMsgF {
+  using vid_t = VID_T;
+
+  char priority;
+  std::vector<vid_t> connect_vertices;
+  std::vector<float> connect_vertices_confi;
+
+  OneidMsg() : priority((char)0) {}
+
+  ~OneidMsg() = default;
+
+  // for message manager to serialize and diserialize
+  friend grape::InArchive& operator<<(grape::InArchive& in_archive,
+                                      const OneidMsg& u) {
+    in_archive << u.priority;
+    in_archive << u.connect_vertices;
+    in_archive << u.connect_vertices_confi;
+    return in_archive;
+  }
+
+  friend grape::OutArchive& operator>>(grape::OutArchive& out_archive,
+                                       OneidMsg& val) {
+    out_archive >> val.priority;
+    out_archive >> val.connect_vertices;
+    out_archive >> val.connect_vertices_confi;
+    return out_archive;
+  }
+};
 
 }// namespace gs
 
@@ -62,8 +91,18 @@ int main() {
   msg.connect_vertices_confi = connect_vertices_confi;
   in << msg;
   std::cout<< "size: " << in.GetSize() << std::endl;
-  std::cout<< "=====" << std::endl;
 
   in.Clear();
+  //float msg
+  gs::OneidMsgF<int64_t> msg_f;
+  msg_f.priority = (char)1;
+  std::vector<int64_t> connect_vertices{100000000,100000001,100000002,100000003,100000004};
+  std::vector<float> connect_vertices_confi_f{1.0000,1.0000,1.0000,1.0000,1.0000};
+  msg_f.connect_vertices = connect_vertices;
+  msg_f.connect_vertices_confi = connect_vertices_confi_f;
+  in << msg_f;
+  std::cout<< "size: " << in.GetSize() << std::endl;
+
+  std::cout<< "=====" << std::endl;
 
 }
