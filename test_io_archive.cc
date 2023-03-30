@@ -44,13 +44,13 @@ struct OneidMsgF {
   std::vector<vid_t> connect_vertices;
   std::vector<float> connect_vertices_confi;
 
-  OneidMsg() : priority((char)0) {}
+  OneidMsgF() : priority((char)0) {}
 
-  ~OneidMsg() = default;
+  ~OneidMsgF() = default;
 
   // for message manager to serialize and diserialize
   friend grape::InArchive& operator<<(grape::InArchive& in_archive,
-                                      const OneidMsg& u) {
+                                      const OneidMsgF& u) {
     in_archive << u.priority;
     in_archive << u.connect_vertices;
     in_archive << u.connect_vertices_confi;
@@ -58,7 +58,7 @@ struct OneidMsgF {
   }
 
   friend grape::OutArchive& operator>>(grape::OutArchive& out_archive,
-                                       OneidMsg& val) {
+                                       OneidMsgF& val) {
     out_archive >> val.priority;
     out_archive >> val.connect_vertices;
     out_archive >> val.connect_vertices_confi;
