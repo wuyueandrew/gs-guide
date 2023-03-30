@@ -50,6 +50,7 @@ int main() {
 
   // str msg
   std::string str_msg = "2|1|1|100000000:100000001:100000002:100000003:100000004|1.0000:1.0000:1.0000:1.0000:1.0000";
+  in << str_msg;
   std::cout<< "size: " << in.GetSize() << std::endl;
 
   // clear
