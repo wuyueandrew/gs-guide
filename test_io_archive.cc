@@ -44,12 +44,22 @@ struct OneidMsg {
 
 int main() {
   grape::InArchive in;
-  size_t size = in.GetSize();
-  std::cout<< "size: " << size << std::endl;
+
+  // init size
+  std::cout<< "size: " << in.GetSize() << std::endl;
+
+  // str msg
+  std::string str_msg = "2|1|1|100000000:100000001:100000002:100000003:100000004|1.0000:1.0000:1.0000:1.0000:1.0000";
+  std::cout<< "size: " << in.GetSize() << std::endl;
+
+  // clear
+  in.Clear();
+
+  // struct msg
   gs::OneidMsg<int> msg;
   msg.type_val = 1;
   msg.priority = 2;
-  std::vector<int> connect_vertices{1,2,3,4,5};
+  std::vector<int64_t> connect_vertices{1,2,3,4,5};
   std::vector<double> connect_vertices_confi{1.0,1.0,1.0,1.0,1.0};
   msg.connect_vertices = connect_vertices;
   msg.connect_vertices_confi = connect_vertices_confi;
