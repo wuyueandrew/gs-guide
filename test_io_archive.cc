@@ -56,7 +56,7 @@ int main() {
   in.Clear();
 
   // struct msg
-  gs::OneidMsg<int> msg;
+  gs::OneidMsg<int64_t> msg;
   msg.type_val = 1;
   msg.priority = 2;
   std::vector<int64_t> connect_vertices{1,2,3,4,5};
