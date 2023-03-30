@@ -96,7 +96,7 @@ int main() {
   //float msg
   gs::OneidMsgF<int64_t> msg_f;
   msg_f.priority = (char)1;
-  std::vector<int64_t> connect_vertices{100000000,100000001,100000002,100000003,100000004};
+  std::vector<int64_t> connect_vertices_f{100000000,100000001,100000002,100000003,100000004};
   std::vector<float> connect_vertices_confi_f{1.0000,1.0000,1.0000,1.0000,1.0000};
   msg_f.connect_vertices = connect_vertices;
   msg_f.connect_vertices_confi = connect_vertices_confi_f;
